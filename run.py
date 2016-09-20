@@ -5,3 +5,4 @@ import statuslist
 
 if __name__ == '__main__':
     statuslist.run()
+    test()
