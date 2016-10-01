@@ -1,17 +1,11 @@
-from . import app, db
-from .model import Job, Category
-import time
+from . import app
+from .model import Job
+from flask import render_template
 
-
-def test():
-    job = Job(500, 'Hasen ausmisten')
-    job.run()
-    job.run()
-    for job in Job.query.all():
-        app.logger.info(job.next_run)
 
 
 @app.route('/')
 def index():
-    test()
-    return 'Hello World'
+    jobs = Job.query.all()
+    jobs = sorted(jobs, key=lambda job: job.days_left)
+    return render_template('index.html', jobs=jobs)

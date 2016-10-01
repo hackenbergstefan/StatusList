@@ -4,6 +4,16 @@ from flask_sqlalchemy import SQLAlchemy
 app = None
 db = None
 
+def _create_test_data():
+    """Creates test data."""
+    import datetime
+    from .model import Job
+    job = Job('Hasen ausmisten', 3)
+    job.run(datetime.date(2016, 9, 30))
+    Job('Einkaufen', 10)
+    job = Job('Fenster putzen', 30)
+    job.run(datetime.date(2016, 9, 7))
+
 
 def _init_db():
     """Creates database if neccessary."""
@@ -23,6 +33,8 @@ def _create_app():
     app.config.from_pyfile('config.py')
 
     _init_db()
+
+    _create_test_data()
 
     from . import views
 

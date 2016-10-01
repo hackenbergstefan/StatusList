@@ -1,0 +1,40 @@
+.job {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid #795548;
+    margin: 5px 0px;
+    border-radius: 2px;
+}
+
+.job > .progress {
+    position: absolute;
+    max-width: 100%;
+    height: 100%;
+    left: 0;
+    z-index: -1;
+    background-color: lightblue;
+}
+
+.job > .description {
+    flex: 3;
+    font-size: 1.8em;
+    margin: 15px;
+}
+
+.job > .next_run {
+    flex: 1;
+    margin: 15px;
+}
+
+.progress.red {
+    background-color: lightcoral;
+}
+
+.progress.yellow {
+    background-color: lightyellow;
+}
+
+.progress.green {
+    background-color: lightblue;
+}

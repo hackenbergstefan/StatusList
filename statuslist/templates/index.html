@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StatusList</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+    <!--<script language="javascript" type="text/javascript" src="{{ url_for('static', filename='job_colering.js') }}"></script> -->
+</head>
+<body>
+    <div class="title">
+        <h1>StatusList</h1>
+    </div>
+    <div class="content">
+        {% for job in jobs %}
+            <div class="job">
+                <div class="progress 
+                     {{ 'red' if job.days_left < 2 else '' }}
+                     {{ 'yellow' if job.days_left < 5 and job.days_left >= 2 else '' }}
+                     {{ 'green' if job.days_left >= 5 else '' }}"
+                     style="width: {{ (1-job.days_left/10)*100 }}%;" >
+                </div>
+                <div class="description">
+                    {{ job.description }}
+                </div>
+                <div class="next_run">
+                    {{ job.next_run }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
