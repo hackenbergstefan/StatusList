@@ -13,6 +13,8 @@ def _create_test_data():
     Job('Einkaufen', 10)
     job = Job('Fenster putzen', 30)
     job.run(datetime.date(2016, 9, 7))
+    job = Job('Saugen', 3)
+    job.run(datetime.date(2016, 9, 7))
 
 
 def _init_db():
