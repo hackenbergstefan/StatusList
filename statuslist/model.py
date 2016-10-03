@@ -51,6 +51,14 @@ class Job(db.Model):
         """Days left until next run."""
         return (self.next_run - datetime.date.today()).days
 
+    def __repr__(self):
+        return "<Job id=%d description=%s interval=%d>" % (
+            self.id,
+            self.description,
+            self.interval
+        )
+
+
 
 class JobRuns(db.Model):
     """Table holding information of Job executions."""

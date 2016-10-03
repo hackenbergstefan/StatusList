@@ -10,11 +10,16 @@ def _create_test_data():
     from .model import Job
     job = Job('Hasen ausmisten', 3)
     job.run(datetime.date(2016, 9, 30))
-    Job('Einkaufen', 10)
-    job = Job('Fenster putzen', 30)
-    job.run(datetime.date(2016, 9, 7))
+    job = Job('Einkaufen', 10)
+    job.run(datetime.date.today() - datetime.timedelta(days=1))
+    job = Job('Fenster putzen', 150)
+    job.run(datetime.date.today() - datetime.timedelta(days=100))
     job = Job('Saugen', 3)
     job.run(datetime.date(2016, 9, 7))
+    job = Job('Hasen ausmisten Klos', 3)
+    job.run(datetime.date(2016, 10, 1))
+    job = Job('Kühlschrank sauber machen', 30)
+    job.run(datetime.date.today() - datetime.timedelta(days=0))
 
 
 def _init_db():

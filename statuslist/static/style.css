@@ -17,7 +17,6 @@ body {
     height: 100%;
     left: 0;
     z-index: -1;
-    background-color: lightblue;
 }
 
 .job > .description {
@@ -37,10 +36,18 @@ body {
     border: 2px solid #a05050;
 }
 
+.job.red > .progress{
+    background: -webkit-linear-gradient(top, #E57373 0%, #EF9A9A 50%);
+}
+
 .job.yellow {
     font-weight: bold;
     color: #6d5d2e;
     border: 2px solid #af9a5b;
+}
+
+.job.yellow > .progress {
+    background: -webkit-linear-gradient(top, #FFE082 0%, #FFECB3 50%);
 }
 
 .job.green {
@@ -49,15 +56,19 @@ body {
     border: 2px solid #a4af40;
 }
 
-
-.progress.red {
-    background: -webkit-linear-gradient(top, #E57373 0%, #EF9A9A 50%);
-}
-
-.progress.yellow {
-    background: -webkit-linear-gradient(top, #FFE082 0%, #FFECB3 50%);
-}
-
-.progress.green {
+.job.green > .progress {
     background: -webkit-linear-gradient(top, #D4E157 0%, #E6EE9C 50%);
+}
+
+.job .do_button {
+    visibility: hidden;
+    background: none;
+    padding: 10px 20px;
+    margin-right: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.job:hover .do_button {
+    visibility: visible;
 }
