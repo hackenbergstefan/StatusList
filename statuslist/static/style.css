@@ -1,9 +1,13 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
 .job {
     position: relative;
     display: flex;
     align-items: center;
     border: 1px solid #795548;
-    margin: 5px 0px;
+    margin: 20px 5px;
     border-radius: 2px;
 }
 
@@ -22,19 +26,38 @@
     margin: 15px;
 }
 
-.job > .next_run {
+.job > .days_left {
     flex: 1;
     margin: 15px;
 }
 
+.job.red {
+    font-weight: bold;
+    color: #711b14;
+    border: 2px solid #a05050;
+}
+
+.job.yellow {
+    font-weight: bold;
+    color: #6d5d2e;
+    border: 2px solid #af9a5b;
+}
+
+.job.green {
+    font-weight: bold;
+    color: #797445;
+    border: 2px solid #a4af40;
+}
+
+
 .progress.red {
-    background-color: lightcoral;
+    background: -webkit-linear-gradient(top, #E57373 0%, #EF9A9A 50%);
 }
 
 .progress.yellow {
-    background-color: lightyellow;
+    background: -webkit-linear-gradient(top, #FFE082 0%, #FFECB3 50%);
 }
 
 .progress.green {
-    background-color: lightblue;
+    background: -webkit-linear-gradient(top, #D4E157 0%, #E6EE9C 50%);
 }
