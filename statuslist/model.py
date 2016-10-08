@@ -15,11 +15,10 @@ class Job(db.Model):
         order_by='desc(JobRuns.date)'
     )
 
-    def __init__(self, description, interval):
+    def __init__(self, description='', interval=0):
         self.description = description
         self.interval = interval
         db.session.add(self)
-        db.session.commit()
 
     def run(self, date: datetime.date=None):
         """Runs job.
@@ -30,8 +29,6 @@ class Job(db.Model):
         if date is None:
             date = datetime.date.today()
         run = JobRuns(self, date)
-        db.session.add(run)
-        db.session.commit()
 
     @property
     def last_run(self):
@@ -71,6 +68,7 @@ class JobRuns(db.Model):
     def __init__(self, job, date):
         self.date = date
         self.job_id = job.id
+        db.session.add(self)
 
     def __repr__(self):
         return '<JobRuns job_id=%d date=%s>' % (self.job_id, self.date)

@@ -15,15 +15,11 @@ Heute fällig!
 <!DOCTYPE html>
 <html>
 <head>
-    <title>StatusList</title>
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
-    <!--<script language="javascript" type="text/javascript" src="{{ url_for('static', filename='job_colering.js') }}"></script> -->
 </head>
 <body>
     <div class="title">
-        <h1>StatusList</h1>
+        <h1>Aufgabenliste</h1>
     </div>
     <div class="content">
         {% for job in jobs %}
@@ -32,14 +28,19 @@ Heute fällig!
                      style="width: {{ job_width(job) }}%;" >
                 </div>
                 <div class="description">
-                    {{ job.description }}
+                    <a href="{{ url_for('editjob', id=job.id) }}">{{ job.description }}</a>
                 </div>
                 <div class="days_left">{{ days_left_str(job) }}</div>
                 <form action="{{ url_for('index') }}" method="POST" >
-                    <button class="do_button" name="do" type="submit" value="{{ job.id }}">DO</button>
+                    <button class="do_button" name="do" type="submit" value="{{ job.id }}">Erledigt!</button>
                 </form>
             </div>
         {% endfor %}
+        <div class="add_job_container">
+            <form action="{{ url_for('index') }}" method="POST" >
+                <button class="add_button" name="add" type="submit"></button>
+            </form>
+        </div>
     </div>
 </body>
 </html>

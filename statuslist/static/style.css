@@ -1,5 +1,14 @@
+@import 'https://fonts.googleapis.com/css?family=Lato';
+@import 'https://fonts.googleapis.com/css?family=Indie+Flower';
+
 body {
     font-family: 'Lato', sans-serif;
+}
+
+h1 {
+    font-family: 'Indie Flower', cursive;
+    font-size: 4em;
+    margin: 5px 0;
 }
 
 .job {
@@ -23,6 +32,11 @@ body {
     flex: 3;
     font-size: 1.8em;
     margin: 15px;
+}
+
+.job > .description > a {
+    text-decoration: inherit;
+    color: inherit;
 }
 
 .job > .days_left {
@@ -67,8 +81,38 @@ body {
     margin-right: 20px;
     border: 1px solid rgba(0, 0, 0, 0.4);
     cursor: pointer;
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.3em;
 }
 
 .job:hover .do_button {
     visibility: visible;
 }
+
+.add_button {
+    font-size: 30px;
+    padding: 10px 10px;
+    border-radius: 18px;
+    border: 1px solid black;
+    width: 30px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    visibility: hidden;
+    cursor: pointer;
+    background-color: transparent;
+    box-sizing: content-box;
+}
+
+.add_button:after {
+    content: "+";
+}
+
+.add_job_container:hover .add_button {
+    visibility: visible;
+}
+
+.delete_button {
+    float: right;
+}
+

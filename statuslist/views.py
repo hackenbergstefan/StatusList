@@ -1,6 +1,7 @@
-from . import app
+from . import app, db
 from .model import Job
 from flask import render_template, request, abort, redirect, url_for
+import logging
 
 
 
@@ -8,9 +9,11 @@ from flask import render_template, request, abort, redirect, url_for
 def index():
     """Provides the route of this website."""
     if request.method == 'POST':
-        index_handle_request()
+        return index_handle_request()
+
     jobs = Job.query.all()
     jobs = sorted(jobs, key=lambda job: job.days_left)
+
     return render_template(
         'index.html',
         jobs=jobs,
@@ -21,22 +24,41 @@ def index():
 
 @app.route('/editjob', methods=['GET', 'POST'])
 def editjob():
-    print(request.form)
-    if 'id' in request.args:
-        job = Job.query.filter_by(id=int(request.args['id'])).first_or_404()
+    """Page for editing jobs."""
+    # If cancel in args, redirect to referrer and rollback db changes
+    if 'cancel' in request.args:
+        db.session.rollback()
+        return redirect(request.args['cancel'])
 
-    try:
-        return render_template(
-            'editjob.html',
-            job=job
-        )
-    except Exception:
-        return render_template(
-            'editjob.html',
-            job=Job.query.filter_by(id=1).first_or_404()
-        )
-        return str(request.args)
+    if 'id' in request.args and request.args['id'].isdigit():
+        job = Job.query.filter_by(id=int(request.args['id'])).first()
+    # If no arguments are given, create new job
+    elif len(request.args) == 0:
+        job = Job()
 
+    # If commit in args, commit
+    if 'commit' in request.args:
+        if 'description' in request.args:
+            job.description = request.args['description']
+        if 'interval' in request.args:
+            job.interval = int(request.args['interval'])
+        db.session.commit()
+        return redirect(url_for('index'))
+    # If delete in args, delete job
+    elif 'delete' in request.args:
+        db.session.delete(job)
+        db.session.commit()
+
+        for job in Job.query.all():
+            print(job)
+
+        return redirect(url_for('index'))
+
+    # if neither commit nor cancel in args, show job
+    return render_template(
+        'editjob.html',
+        job=job
+    )
 
 
 def job_class(job: Job):
@@ -53,9 +75,11 @@ def job_class(job: Job):
     else:
         return 'green'
 
+
 def job_width(job: Job):
     from math import exp
     return 100*exp(-0.1*job.days_left)
+
 
 def index_handle_request():
     """Handles POST requests to index."""
@@ -64,3 +88,7 @@ def index_handle_request():
     req = request.form
     if 'do' in req:
         Job.query.filter_by(id=int(req['do'])).first().run()
+        db.session.commit()
+        return redirect(url_for('index'))
+    elif 'add' in req:
+        return redirect(url_for('editjob'))

@@ -9,17 +9,29 @@ def _create_test_data():
     import datetime
     from .model import Job
     job = Job('Hasen ausmisten', 3)
+    db.session.commit()
     job.run(datetime.date(2016, 9, 30))
+    db.session.commit()
     job = Job('Einkaufen', 10)
+    db.session.commit()
     job.run(datetime.date.today() - datetime.timedelta(days=1))
+    db.session.commit()
     job = Job('Fenster putzen', 150)
+    db.session.commit()
     job.run(datetime.date.today() - datetime.timedelta(days=100))
+    db.session.commit()
     job = Job('Saugen', 3)
+    db.session.commit()
     job.run(datetime.date(2016, 9, 7))
+    db.session.commit()
     job = Job('Hasen ausmisten Klos', 3)
+    db.session.commit()
     job.run(datetime.date(2016, 10, 1))
+    db.session.commit()
     job = Job('Kühlschrank sauber machen', 30)
+    db.session.commit()
     job.run(datetime.date.today() - datetime.timedelta(days=0))
+    db.session.commit()
 
 
 def _init_db():
@@ -27,10 +39,12 @@ def _init_db():
     import os
     global db
     db = SQLAlchemy(app)
+
     from . import model
-    #if not os.path.exists(app.config['SQLALCHEMY_DATABASE_URI']):
-    db.drop_all()
-    db.create_all()
+
+    #db.drop_all()
+    #db.create_all()
+    #_create_test_data()
 
 
 def _create_app():
@@ -40,8 +54,6 @@ def _create_app():
     app.config.from_pyfile('config.py')
 
     _init_db()
-
-    _create_test_data()
 
     from . import views
 
