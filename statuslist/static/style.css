@@ -45,6 +45,7 @@ h1 {
 }
 
 .job.red {
+    font-size: 1.2em;
     font-weight: bold;
     color: #711b14;
     border: 2px solid #a05050;
@@ -55,6 +56,7 @@ h1 {
 }
 
 .job.yellow {
+    font-size: 1.1em;
     font-weight: bold;
     color: #6d5d2e;
     border: 2px solid #af9a5b;
