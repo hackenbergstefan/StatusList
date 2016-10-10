@@ -33,7 +33,7 @@ def editjob():
     if 'id' in request.args and request.args['id'].isdigit():
         job = Job.query.filter_by(id=int(request.args['id'])).first()
     # If no arguments are given, create new job
-    elif len(request.args) == 0:
+    else:
         job = Job()
 
     # If commit in args, commit
