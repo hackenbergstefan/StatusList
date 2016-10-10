@@ -37,13 +37,18 @@ def _create_test_data():
 def _init_db():
     """Creates database if neccessary."""
     import os
+    import re
     global db
     db = SQLAlchemy(app)
 
     from . import model
 
+    match = re.match(r'^sqlite:///(.*)$', app.config['SQLALCHEMY_DATABASE_URI'])
+    if match and not os.path.exists(match.group(1)):
+        db.create_all()
+
+    # Example configuration
     #db.drop_all()
-    #db.create_all()
     #_create_test_data()
 
 
