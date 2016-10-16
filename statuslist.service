@@ -1,0 +1,9 @@
+[Unit]
+Description=Service to start StatusList
+
+[Service]
+Type=simple
+ExecStart=/home/stefan/StatusList/run.py
+
+[Install]
+WantedBy=multi-user.target
