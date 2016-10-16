@@ -65,7 +65,7 @@ def _create_app():
 
 def run():
     """Run the statuslist Flask app."""
-    app.run()
+    app.run(host='0.0.0.0', port='8001')
 
 
 _create_app()
