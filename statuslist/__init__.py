@@ -48,8 +48,9 @@ def _init_db():
         db.create_all()
 
     # Example configuration
-    #db.drop_all()
-    #_create_test_data()
+    db.drop_all()
+    db.create_all()
+    _create_test_data()
 
 
 def _create_app():
