@@ -1,0 +1,10 @@
+[Unit]
+Description=Service for kiosk mode displaying StatusList.
+
+[Service]
+Type=simple
+ExecStart=/home/pi/StatusList/kiosk.sh start
+ExecStop=/home/pi/StatusList/kiosk.sh stop
+
+[Install]
+WantedBy=multi-user.target
