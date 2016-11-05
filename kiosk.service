@@ -5,6 +5,7 @@ Description=Service for kiosk mode displaying StatusList.
 Type=simple
 ExecStart=/home/pi/StatusList/kiosk.sh start
 ExecStop=/home/pi/StatusList/kiosk.sh stop
+User=pi
 
 [Install]
 WantedBy=multi-user.target
