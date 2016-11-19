@@ -3,7 +3,8 @@
 PID_FILE="$(dirname "${BASH_SOURCE[0]}")/kiosk.pid"
 
 function start {
-    chromium-browser --kiosk "192.168.1.250:8001" &
+    sleep 10
+    chromium-browser --enable-fullscreen --kiosk "localhost:8001" &
     echo $! > kiosk.pid
 }
 
