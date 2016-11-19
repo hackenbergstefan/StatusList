@@ -1,6 +1,6 @@
 #!/bin/bash
 
-STATUSLIST_SERVER="localhost:8001"
+STATUSLIST_SERVER="http://127.0.0.1:8001"
 
 PID_FILE="$(dirname "${BASH_SOURCE[0]}")/kiosk.pid"
 echo PID_FILE = $PID_FILE

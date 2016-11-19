@@ -3,7 +3,7 @@ Description=Service to start StatusList
 
 [Service]
 Type=simple
-ExecStart=/home/stefan/StatusList/run.py
+ExecStart=/home/pi/StatusList/run.py
 
 [Install]
 WantedBy=multi-user.target
