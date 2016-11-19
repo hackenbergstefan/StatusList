@@ -22,6 +22,7 @@ function start {
     echo Start kiosk
     export DISPLAY=:0
     # Start chromium
+    sleep 10
     chromium-browser --enable-fullscreen --kiosk $STATUSLIST_SERVER &
     PID=$!
     echo $PID > $PID_FILE
